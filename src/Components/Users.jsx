@@ -108,12 +108,6 @@ const Users = () => {
     }
   }, [search, entities])
 
-  // const handleStatus = (i)=>{
-  //   console.log(i)
-  //   console.log(entities)
-
-  // }
-
   return (
     <>
       {/* Navigation bar authentication */}
