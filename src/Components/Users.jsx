@@ -209,7 +209,7 @@ const Users = () => {
                   sx={{
                     backgroundColor: '#e8e8e8',
                     display: 'flex',
-                    justifyContent: 'flex-end',
+                    justifyContent: 'center',
                     alignItems: 'center',
                   }}
                   align="center"
@@ -332,7 +332,7 @@ const Users = () => {
                   sx={{
                     backgroundColor: '#e8e8e8',
                     display: 'flex',
-                    justifyContent: 'flex-end',
+                    justifyContent: 'center',
                     alignItems: 'center',
                   }}
                   align="center"
