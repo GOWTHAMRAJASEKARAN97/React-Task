@@ -1,11 +1,11 @@
 {
   "name": "reacttask",
   "version": "0.1.0",
-  "homepage": "https://GOWTHAMRAJASEKARAN97.github.io/aequalis-react-task",
+  "homepage": "",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.4",
-    "@emotion/styled": "^11.10.4",
+    "@emotion/styled": "^11.10.4",https://GOWTHAMRAJASEKARAN97.github.io/aequalis-react-task
     "@mui/icons-material": "^5.10.2",
     "@mui/material": "^5.10.3",
     "@reduxjs/toolkit": "^1.8.5",
