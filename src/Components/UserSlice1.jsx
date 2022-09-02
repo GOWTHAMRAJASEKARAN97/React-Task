@@ -24,6 +24,7 @@ const usersSlice = createSlice({
       state.entities.push(action.payload)
     },
     userUpdated(state, action) {
+      console.log("State : ",state)
       const {
         id,
         name,
@@ -34,7 +35,7 @@ const usersSlice = createSlice({
         role,
         confirmPassword,
       } = action.payload
-      const existingUser = state.entities.find((user) => user.id === id)
+      let existingUser = state.entities.find((user) => user.id === action.payload.id)
       if (existingUser) {
         existingUser.name = name
         existingUser.status = status
@@ -44,6 +45,7 @@ const usersSlice = createSlice({
         existingUser.data = data
         existingUser.role = role
         existingUser.confirmPassword = confirmPassword
+        //existingUser = {...existingUser,...action.payload}
       }
     },
     userDeleted(state, action) {

@@ -14,9 +14,10 @@ const Nav = styled(Button)`
 
 const NavBar = () => {
 
+
   const Navigate = useNavigate()
   const { id } = useParams()
-
+  const path = localStorage.getItem('path')
 
   const logoutHandler = (e) => {
     e.preventDefault()
@@ -56,7 +57,7 @@ const NavBar = () => {
               sx={{
                 fontSize: '15px',
                 textTransform: 'none',
-                color: "#95989c",
+                color:path !== 'users'?  "#95989c":"#ffffff",
               }}
 
               
@@ -69,7 +70,7 @@ const NavBar = () => {
               sx={{
                 fontSize: '15px',
                 textTransform: 'none',
-                color: "#95989c",
+                color:path !=='networks'? "#95989c":"#ffffff",
               }}
             >
               network

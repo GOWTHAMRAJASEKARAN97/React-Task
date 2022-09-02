@@ -19,6 +19,7 @@ const LoginForm = (details) => {
   const { entities } = useSelector((state) => state.users)
   const id = details.details
   const users = entities.filter((user) => user.id === id)
+  console.log(entities)
   const action = details.option
   const gathered = localStorage.getItem('path')
   const ButtonChange = localStorage.getItem('path')
@@ -56,7 +57,7 @@ const LoginForm = (details) => {
     e.preventDefault()
     if (e.target.files && e.target.files[0]) {
       setImage(window.URL.createObjectURL(e.target.files[0]))
-    }else{
+    } else {
       setImageAlert(true)
     }
   }
@@ -157,14 +158,16 @@ const LoginForm = (details) => {
   }, [data])
 
   React.useEffect(() => {
-    if (name && status && role && data && password) {
+    if (name && status && role && data && password && image && dataCheck===false && dataAlert===false) {
+      console.log(dataCheck,!dataAlert)
       setAlert(false)
     }
-  }, [data, name, password, role, status, alert])
+  }, [data, name, password, role, status, alert,dataCheck,dataAlert,image])
 
   const handleSubmit = () => {
     setOpen(false)
-    if (name && status && role && data && password) {
+    if (name && status && role && data && password && image && !dataCheck) {
+      console.log(image)
       if (action !== 'edit') {
         dispatch(
           userAdded({
@@ -413,7 +416,7 @@ const LoginForm = (details) => {
 
             <Stack>
               <DialogContentText sx={{ fontSize: 'small', color: '#050505' }}>
-                Data(json)  
+                Data(json)
               </DialogContentText>
 
               <TextareaAutosize
@@ -443,7 +446,7 @@ const LoginForm = (details) => {
                   enter JSON data
                 </DialogContentText>
               ) : */}
-              
+
               {dataAlert ? (
                 <DialogContentText
                   sx={{ fontSize: 'smaller', color: '#c53229' }}

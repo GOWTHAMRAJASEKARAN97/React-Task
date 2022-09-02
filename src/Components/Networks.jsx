@@ -24,12 +24,13 @@ import {
 import { useState } from 'react'
 
 const Networks = () => {
+  localStorage.setItem('path', 'networks')
   const { datas } = useSelector((state) => state.networks)
   const [modalOpen, setModalOpen] = useState(false)
   const Navigate = useNavigate()
   const dispatch = useDispatch()
   const [search, setSearch] = useState('')
-  
+
   React.useEffect(() => {
     if (!localStorage.getItem('auth')) {
       Navigate('/')
@@ -62,10 +63,6 @@ const Networks = () => {
     return items.network.toLowerCase().indexOf(search.toLowerCase()) !== -1
   })
 
- 
-
-
-
   return (
     <>
       {/* Navigation bar authentication */}
@@ -73,7 +70,7 @@ const Networks = () => {
       {localStorage.getItem('auth') ? <NavBar /> : <></>}
 
       {/* dropdown and search bar */}
-      
+
       <Stack>
         <Stack
           direction="row"
@@ -110,7 +107,7 @@ const Networks = () => {
             }}
           >
             <Table aria-label="userList" stickyHeader>
-              <TableHead >
+              <TableHead>
                 <TableRow>
                   <TableCell
                     sx={{ backgroundColor: '#e8e8e8', zIndex: '0' }}
@@ -172,8 +169,6 @@ const Networks = () => {
                   ))}
               </TableBody>
             </Table>
-
-           
           </TableContainer>
         ) : (
           <TableContainer
@@ -187,7 +182,7 @@ const Networks = () => {
             }}
           >
             <Table aria-label="userList" stickyHeader>
-              <TableHead >
+              <TableHead>
                 <TableRow>
                   <TableCell
                     sx={{ backgroundColor: '#e8e8e8', zIndex: '0' }}
@@ -249,25 +244,30 @@ const Networks = () => {
                   ))}
               </TableBody>
             </Table>
-              </TableContainer>
-            )}
-            <Stack
-            sx={{ display: 'flex', justifyContent: 'flex-end', width:'80%' ,borderBottom:'0px'}}
-            direction="row"
-            >
-              <Button
-                variant="contained"
-                size="small"
-                sx={{
-                  background: 'green',
-                  textTransform: 'none',
-                }}
-                onClick={(e) => handleAdd(e)}
-                >
-                Add new network
-              </Button>
-            </Stack>
-            {modalOpen && <NetworkForm setOpenModal={setModalOpen} />}
+          </TableContainer>
+        )}
+        <Stack
+          sx={{
+            display: 'flex',
+            justifyContent: 'flex-end',
+            width: '80%',
+            borderBottom: '0px',
+          }}
+          direction="row"
+        >
+          <Button
+            variant="contained"
+            size="small"
+            sx={{
+              background: 'green',
+              textTransform: 'none',
+            }}
+            onClick={(e) => handleAdd(e)}
+          >
+            Add new network
+          </Button>
+        </Stack>
+        {modalOpen && <NetworkForm setOpenModal={setModalOpen} />}
       </Stack>
     </>
   )

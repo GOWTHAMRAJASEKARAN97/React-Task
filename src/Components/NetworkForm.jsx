@@ -12,7 +12,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { networkAdded, networkUpdated } from './NetworksSlice'
 
 function NetworkForm({ setOpenModal }) {
-
   const Dispatch = useDispatch()
   const { datas } = useSelector((state) => state.networks)
   const id = localStorage.getItem('network.id')
@@ -30,9 +29,31 @@ function NetworkForm({ setOpenModal }) {
 
   const [network, setNetwork] = useState(NetworkChanger)
   const [discription, setDiscription] = useState(DiscriptionChanger)
-  
-  const handleNetwork = (e) => setNetwork(e.target.value)
-  const handleDiscription = (e) => setDiscription(e.target.value)
+  const [networkAlert, setNetworkAlert] = useState(false)
+  const [discriptionAlert, setDiscriptionAlert] = useState(false)
+  const [buttonAlert, setButttonAlert] = useState(true)
+
+  const handleNetwork = (e) => {
+    e.preventDefault()
+    if (e.target.value !== '') {
+      setNetworkAlert(false)
+      setNetwork(e.target.value)
+    } else {
+      setNetworkAlert(true)
+      setNetwork('')
+    }
+  }
+
+
+  const handleDiscription = (e) => {
+    if (e.target.value !== '') {
+      setDiscription(e.target.value)
+      setDiscriptionAlert(false)
+    } else {
+      setDiscriptionAlert(true)
+      setDiscription('')
+    }
+  }
 
   React.useEffect(() => {
     if (localStorage.getItem('button') === 'edit') {
@@ -49,6 +70,21 @@ function NetworkForm({ setOpenModal }) {
       setAction('')
     }
   }, [ButtonChange])
+
+  React.useEffect(() => {
+    console.log(1)
+    if (
+      network &&
+      discription &&
+      networkAlert === false &&
+      discriptionAlert === false
+    ) {
+      setButttonAlert(false)
+    }else{
+      
+      setButttonAlert(true)
+    }
+  }, [network, discription, networkAlert, discriptionAlert])
 
   const handleSubmit = () => {
     if (network && discription) {
@@ -108,9 +144,9 @@ function NetworkForm({ setOpenModal }) {
                   placeholder="Name"
                   size="small"
                   value={network}
-                  error={!network}
-                  onChange={(e) => handleNetwork(e)}
-                  helperText={!network ? 'please enter network' : ''}
+                  error={networkAlert}
+                  onChange={handleNetwork}
+                  helperText={networkAlert ? 'please enter network' : ''}
                   inputProps={{ style: { fontSize: 'small' } }}
                   sx={{ width: '100%' }}
                 />
@@ -130,12 +166,14 @@ function NetworkForm({ setOpenModal }) {
                   inputProps={{ style: { fontSize: 'small' } }}
                   sx={{ width: '100%' }}
                   value={discription}
-                  error={!discription}
-                  helperText={!discription ? 'please enter discription' : ''}
+                  error={discriptionAlert}
+                  helperText={
+                    discriptionAlert ? 'please enter discription' : ''
+                  }
                   onChange={(e) => handleDiscription(e)}
                 />
               </DiscriptionField>
-              {!discription ? (
+              {discriptionAlert ? (
                 <DialogContentText
                   sx={{
                     fontSize: 'smaller',
@@ -172,7 +210,7 @@ function NetworkForm({ setOpenModal }) {
                     background: 'green',
                     textTransform: 'none',
                   }}
-                  disabled={alert}
+                  disabled={buttonAlert}
                 >
                   Submit
                 </Button>

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { userDeleted } from './UserSlice1'
 import NavBar from './NavBar'
 import LoginForm from './LoginForm'
+import { userUpdated } from './UserSlice1'
 
 import InfoIcon from '@mui/icons-material/Info'
 import {
@@ -42,6 +43,9 @@ const Users = () => {
   const [list, setList] = useState(entities)
   const [tooltip, setTooltip] = useState('Default')
   localStorage.setItem('path', 'users')
+
+
+
 
   React.useEffect(() => {
     if (!localStorage.getItem('auth')) {
@@ -106,6 +110,14 @@ const Users = () => {
       setList(entities)
     }
   }, [search, entities])
+
+
+
+    // const handleStatus = (i)=>{
+    //   console.log(i)
+    //   console.log(entities)
+      
+    // }
 
   return (
     <>
@@ -207,6 +219,9 @@ const Users = () => {
                 <TableCell
                   sx={{
                     backgroundColor: '#e8e8e8',
+                    display:'flex',
+                    justifyContent:'flex-end',
+                    alignItems:'center'
                   }}
                   align="center"
                 >
@@ -227,19 +242,18 @@ const Users = () => {
                     sx={{
                       display: 'flex',
                       height: 'auto',
-                      width: 'fit-content',
-                      padding: '4px',
-                      margin: ' 1% auto',
+                      width: 'fit-content ',
+                      margin: ' 1% ',
                     }}
                   >
                     <Button
-                      sx={{ height: '10px' }}
+                      sx={{ height: '10px',minWidth:'0px',padding:'0px' }}
                       onClick={(e) => AccHandler(e)}
                     >
                       ꜛ
                     </Button>
                     <Button
-                      sx={{ height: '10px', width: '10px' }}
+                      sx={{ height: '10px', minWidth: '0px',padding:'0px' }}
                       onClick={(e) => DecHandler(e)}
                     >
                       ↓
@@ -263,7 +277,7 @@ const Users = () => {
             </TableHead>
             <TableBody>
               {entities.length &&
-                filtered.map(({ id, name, image, role, data }, i) => (
+                filtered.map(({ id, name, image, role, data ,status}, i) => (
                   <TableRow
                     key={i}
                     sx={{ '&:last-chid td,&:last-child th': { border: 1 } }}
@@ -274,10 +288,9 @@ const Users = () => {
                     </TableCell>
                     <TableCell align="center">{name}</TableCell>
                     <TableCell align="center">{role}</TableCell>
-                    <TableCell align="center">
-                      {name === localStorage.getItem('login')
-                        ? 'Active'
-                        : 'Loggedout'}
+                    <TableCell align="center">{status}
+                      {/* {name === localStorage.getItem('login')
+                        ? 'Active':"Loggedout"} */}
                     </TableCell>
                     <TableCell align="center">{data}</TableCell>
                     <TableCell align="center">
@@ -329,9 +342,12 @@ const Users = () => {
                   Profile
                 </TableCell>
 
-                <TableCell
+               <TableCell
                   sx={{
                     backgroundColor: '#e8e8e8',
+                    display:'flex',
+                    justifyContent:'flex-end',
+                    alignItems:'center'
                   }}
                   align="center"
                 >
@@ -352,26 +368,24 @@ const Users = () => {
                     sx={{
                       display: 'flex',
                       height: 'auto',
-                      width: 'fit-content',
-                      padding: '4px',
-                      margin: ' 1% auto',
+                      width: 'fit-content ',
+                      margin: ' 1% ',
                     }}
                   >
                     <Button
-                      sx={{ height: '10px' }}
+                      sx={{ height: '10px',minWidth:'0px',padding:'0px' }}
                       onClick={(e) => AccHandler(e)}
                     >
                       ꜛ
                     </Button>
                     <Button
-                      sx={{ height: '10px', width: '10px' }}
+                      sx={{ height: '10px', minWidth: '0px',padding:'0px' }}
                       onClick={(e) => DecHandler(e)}
                     >
                       ↓
                     </Button>
                   </Stack>
                 </TableCell>
-
                 <TableCell sx={{ backgroundColor: '#e8e8e8' }} align="center">
                   Role
                 </TableCell>
@@ -388,7 +402,7 @@ const Users = () => {
             </TableHead>
             <TableBody>
               {entities.length &&
-                list.map(({ id, name, image, role, data }, i) => (
+                list.map(({ id, name, image, role, data,status }, i) => (
                   <TableRow
                     key={i}
                     sx={{ '&:last-chid td,&:last-child th': { border: 1 } }}
@@ -399,10 +413,11 @@ const Users = () => {
                     </TableCell>
                     <TableCell align="center">{name}</TableCell>
                     <TableCell align="center">{role}</TableCell>
-                    <TableCell align="center">
-                      {name === localStorage.getItem('login')
+                    <TableCell align="center">{status}
+                      {/* {name === localStorage.getItem('login')
                         ? 'Active'
-                        : 'Loggedout'}
+                        : 'Loggedout'} */}
+                      
                     </TableCell>
                     <TableCell align="center">{data}</TableCell>
                     <TableCell align="center">
