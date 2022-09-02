@@ -44,9 +44,6 @@ const Users = () => {
   const [tooltip, setTooltip] = useState('Default')
   localStorage.setItem('path', 'users')
 
-
-
-
   React.useEffect(() => {
     if (!localStorage.getItem('auth')) {
       Navigate('/')
@@ -111,13 +108,11 @@ const Users = () => {
     }
   }, [search, entities])
 
+  // const handleStatus = (i)=>{
+  //   console.log(i)
+  //   console.log(entities)
 
-
-    // const handleStatus = (i)=>{
-    //   console.log(i)
-    //   console.log(entities)
-      
-    // }
+  // }
 
   return (
     <>
@@ -219,9 +214,9 @@ const Users = () => {
                 <TableCell
                   sx={{
                     backgroundColor: '#e8e8e8',
-                    display:'flex',
-                    justifyContent:'flex-end',
-                    alignItems:'center'
+                    display: 'flex',
+                    justifyContent: 'flex-end',
+                    alignItems: 'center',
                   }}
                   align="center"
                 >
@@ -247,13 +242,13 @@ const Users = () => {
                     }}
                   >
                     <Button
-                      sx={{ height: '10px',minWidth:'0px',padding:'0px' }}
+                      sx={{ height: '10px', minWidth: '0px', padding: '0px' }}
                       onClick={(e) => AccHandler(e)}
                     >
                       ꜛ
                     </Button>
                     <Button
-                      sx={{ height: '10px', minWidth: '0px',padding:'0px' }}
+                      sx={{ height: '10px', minWidth: '0px', padding: '0px' }}
                       onClick={(e) => DecHandler(e)}
                     >
                       ↓
@@ -277,7 +272,7 @@ const Users = () => {
             </TableHead>
             <TableBody>
               {entities.length &&
-                filtered.map(({ id, name, image, role, data ,status}, i) => (
+                filtered.map(({ id, name, image, role, data, status }, i) => (
                   <TableRow
                     key={i}
                     sx={{ '&:last-chid td,&:last-child th': { border: 1 } }}
@@ -288,10 +283,7 @@ const Users = () => {
                     </TableCell>
                     <TableCell align="center">{name}</TableCell>
                     <TableCell align="center">{role}</TableCell>
-                    <TableCell align="center">{status}
-                      {/* {name === localStorage.getItem('login')
-                        ? 'Active':"Loggedout"} */}
-                    </TableCell>
+                    <TableCell align="center">{status}</TableCell>
                     <TableCell align="center">{data}</TableCell>
                     <TableCell align="center">
                       <Button
@@ -342,12 +334,12 @@ const Users = () => {
                   Profile
                 </TableCell>
 
-               <TableCell
+                <TableCell
                   sx={{
                     backgroundColor: '#e8e8e8',
-                    display:'flex',
-                    justifyContent:'flex-end',
-                    alignItems:'center'
+                    display: 'flex',
+                    justifyContent: 'flex-end',
+                    alignItems: 'center',
                   }}
                   align="center"
                 >
@@ -373,13 +365,13 @@ const Users = () => {
                     }}
                   >
                     <Button
-                      sx={{ height: '10px',minWidth:'0px',padding:'0px' }}
+                      sx={{ height: '10px', minWidth: '0px', padding: '0px' }}
                       onClick={(e) => AccHandler(e)}
                     >
                       ꜛ
                     </Button>
                     <Button
-                      sx={{ height: '10px', minWidth: '0px',padding:'0px' }}
+                      sx={{ height: '10px', minWidth: '0px', padding: '0px' }}
                       onClick={(e) => DecHandler(e)}
                     >
                       ↓
@@ -402,7 +394,7 @@ const Users = () => {
             </TableHead>
             <TableBody>
               {entities.length &&
-                list.map(({ id, name, image, role, data,status }, i) => (
+                list.map(({ id, name, image, role, data, status }, i) => (
                   <TableRow
                     key={i}
                     sx={{ '&:last-chid td,&:last-child th': { border: 1 } }}
@@ -413,12 +405,7 @@ const Users = () => {
                     </TableCell>
                     <TableCell align="center">{name}</TableCell>
                     <TableCell align="center">{role}</TableCell>
-                    <TableCell align="center">{status}
-                      {/* {name === localStorage.getItem('login')
-                        ? 'Active'
-                        : 'Loggedout'} */}
-                      
-                    </TableCell>
+                    <TableCell align="center">{status}</TableCell>
                     <TableCell align="center">{data}</TableCell>
                     <TableCell align="center">
                       <Button
